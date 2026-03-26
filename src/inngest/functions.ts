@@ -28,7 +28,7 @@ Example:
 - Feature X automatically does Y
 - Mention of integration with Z`
   .trim(),
-  model: openai({ model: "chatgpt-4o-latest", apiKey : process.env.OPENAI_API_KEY}),
+  model: openai({ model: "gpt-5", apiKey : process.env.OPENAI_API_KEY}),
 });
 
 export const meetingsProcessing = inngest.createFunction(
