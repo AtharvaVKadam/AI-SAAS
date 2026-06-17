@@ -1,92 +1,93 @@
-# AI SAAS Platform
+🎙️ AI-SAAS: Real-Time AI Conferencing & Agent Workspace
 
-A high-performance, full-stack AI-powered Software as a Service (SAAS) application. Built with modern web technologies to ensure scalability, security, and a seamless user experience.
+🚀 Live Demo: https://ai-saas11.vercel.app/
 
-## 🚀 Tech Stack
+🎥 See it in Action
 
-* **Framework**: [Next.js](https://nextjs.org/) (App Router) with [TypeScript](https://www.typescriptlang.org/)
-* **Database**: Serverless PostgreSQL via [NeonDB](https://neon.tech/)
-* **ORM**: [Drizzle ORM](https://orm.drizzle.team/) for type-safe database operations
-* **Authentication**: [Clerk](https://clerk.com/) or [Better Auth](https://www.better-auth.com/) for secure user management
-* **Payments**: [Stripe](https://stripe.com/) for subscription and billing management
-* **Deployment**: [Vercel](https://vercel.com/)
+https://github.com/user-attachments/assets/92702b4f-3280-478b-9ab9-812d43e518de
 
-## 🛠️ Getting Started
+📖 Overview
 
-### Prerequisites
+AI-SAAS is a full-stack, real-time video conferencing platform engineered to go beyond standard communication. By combining WebRTC media streaming with Live Voice-to-Voice AI Agents, users can host meetings not just with peers, but with custom-instructed AI assistants. The platform aggregates conversational context in real-time, automatically generating meeting summaries, full transcripts, and a queryable RAG (Retrieval-Augmented Generation) chat interface for post-meeting analysis.
 
-Ensure you have the following installed:
-* [Node.js](https://nodejs.org/) (Latest LTS)
-* npm, yarn, or pnpm
+✨ Core Features
 
-### Installation
+🤖 Custom Voice AI Agents: Create domain-specific agents (e.g., "Science Tutor") that join video calls and interact via voice in real-time. Fully supports multilingual interactions (English, Marathi, etc.) with dynamic language switching.
 
-1. **Clone the repository**:
-   ```bash
-   git clone [https://github.com/AtharvaVKadam/AI-SAAS.git](https://github.com/AtharvaVKadam/AI-SAAS.git)
-   cd AI-SAAS
+📹 Real-Time Video Conferencing: Sub-second latency video/audio rooms with custom pre-join hardware checks.
 
-```
+📝 Smart Transcripts & Summaries: Silently aggregates conversation context, securely processing the audio into Executive Overviews, bulleted action items, and timestamped transcripts.
 
-2. **Install dependencies**:
-```bash
+💬 "Ask AI" Meeting Queries: A built-in RAG chat interface allows users to query their past meetings (e.g., "What was the first question I asked?").
+
+💳 SaaS Billing Architecture: Fully integrated Stripe subscription tiers (Free, Monthly, Yearly) controlling agent limits and recording storage.
+
+🏗️ Systems Architecture
+
+[ Client (Next.js) ] <====== WebRTC (Video/Audio) ======> [ Custom Voice AI Agent ]
+          |                                                             |
+          | (1. Join Room, Audio Streams, Pre-flight Checks)            |
+          +---------------------> [ Real-Time Signaling Server ] <------+
+                                                  |
+                                    [ LLM Processing Pipeline ] -> Generates Voice/Text
+                                                  |
+                                          [ Database ] -> Persists Transcripts & Summaries
+
+
+💻 Tech Stack
+
+Frontend: Next.js (App Router), React, Tailwind CSS
+
+Media & Real-Time: WebRTC, custom media stream hooks
+
+AI & Processing: Voice-to-Text / Text-to-Voice Pipelines, LLM Summarization APIs
+
+Database & Auth: Secure DB for transcript persistence, authentication middleware
+
+Payments: Stripe Checkout & Webhooks
+
+🚀 Getting Started
+
+Prerequisites
+
+Node.js installed locally
+
+Required API Keys (Database, AI Provider, Stripe)
+
+Installation
+
+Clone the repository
+
+git clone [https://github.com/AtharvaVKadam/AI-SAAS.git](https://github.com/AtharvaVKadam/AI-SAAS.git)
+cd AI-SAAS
+
+
+Install Dependencies
+
 npm install
 
-```
 
+Environment Setup
+Create a .env.local file in the root directory:
 
-3. **Set up environment variables**:
-Create a `.env.local` file in the root directory and add your credentials:
-```text
-DATABASE_URL=your_neondb_connection_string
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_key
-CLERK_SECRET_KEY=your_secret
+# Add your specific database, auth, and Stripe keys here
+DATABASE_URL=your_db_connection_string
 STRIPE_API_KEY=your_stripe_key
 
-```
 
+Run the Server
 
-*Note: Ensure `.env.local` is listed in your `.gitignore` to prevent leaking secrets.*
-4. **Database Setup**:
-```bash
-npx drizzle-kit generate
-npx drizzle-kit push
-
-```
-
-
-5. **Run the development server**:
-```bash
 npm run dev
 
-```
 
+Open http://localhost:3000 in your browser.
 
+🧠 Engineering Highlights
 
-## 📖 Key Features
+Real-Time AI Voice Latency: Optimized the audio streaming pipeline to allow for natural, conversational interruptions and low-latency responses from the AI agent.
 
-* **AI Integration**: Core SAAS functionality powered by AI models.
-* **Secure Auth**: Middleware-protected routes to ensure only authorized access.
-* **Type-Safe DB**: Robust schema management and migrations using Drizzle ORM.
-* **Subscription Tiers**: Fully managed billing cycles and user plan access.
+Context-Aware RAG Implementation: Engineered the post-meeting dashboard to chunk and embed meeting transcripts, allowing users to query specific moments from hours of conversation instantly.
 
----
+Webhook Synchronization: Implemented secure Stripe webhooks to keep the database's user subscription state in perfect sync with the payment gateway, unlocking tiered features dynamically.
 
-```
-
-### Final Step Checklist:
-1.  **Paste** the code above into your `README.md` in VS Code.
-2.  **Delete** any remaining `<<<<<<<`, `=======`, or `>>>>>>>` lines.
-3.  **Run these commands** to finish:
-    * `git add README.md`
-    * `git rebase --continue`
-    * `git push origin main`
-
-
-
-Would you like me to help you set up the **Stripe** or **Clerk** integration next?
-
-[Full Stack AI SaaS build tutorial](https://www.youtube.com/watch?v=bZFedu-0emE)
-This video provides a comprehensive walkthrough of building an AI SaaS using the exact stack you chose (Next.js, Drizzle, and NeonDB), which will help you customize the project beyond the "copied" version.
-
-
+Built by Atharva Kadam.
